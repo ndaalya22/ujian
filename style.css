@@ -1,0 +1,251 @@
+/* ── Token warna dari DESIGN "Ujian Digital SD" (tema terang = utama) ── */
+:root, [data-theme="light"] {
+  --primary:#2F6FED; --primary-50:#EAF1FF; --navy:#16275C; --yellow:#FFC93C; --yellow-50:#FFF6D6;
+  --bg:#F5F8FF; --card:#FFFFFF; --text:#1E2A4A; --muted:#64708A; --border:#E3E9F5;
+  --success:#16A34A; --warning:#F59E0B; --danger:#DC2626; --danger-50:#FEE2E2; --success-50:#DCFCE7;
+  --sh1:0 2px 8px rgba(22,39,92,.08); --sh2:0 6px 18px rgba(22,39,92,.12); --sh3:0 12px 32px rgba(22,39,92,.18);
+  --sidebar:#16275C; --sidebar-text:#C9D3F0;
+  --r-card:16px; --r-ctl:12px;
+}
+[data-theme="dark"] {
+  --primary:#5B8DF5; --primary-50:#1E2F5E; --navy:#DCE6FF; --yellow:#FFC93C; --yellow-50:#3A3015;
+  --bg:#0E1630; --card:#17224A; --text:#E6ECFF; --muted:#9AA7C7; --border:#2A3868;
+  --danger-50:#4A1D24; --success-50:#12361F;
+  --sh1:0 2px 8px rgba(0,0,0,.35); --sh2:0 6px 18px rgba(0,0,0,.45); --sh3:0 12px 32px rgba(0,0,0,.55);
+  --sidebar:#0A1128; --sidebar-text:#9AA7C7;
+}
+*,*::before,*::after{ transition:background-color .25s ease,color .25s ease,border-color .25s ease; }
+html,body{ margin:0; background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; font-size:16px; }
+h1,h2,h3,h4,h5,.nunito{ font-family:'Nunito Sans','Inter',sans-serif; font-weight:800; color:var(--navy); }
+.text-muted{ color:var(--muted)!important; }
+.hidden{ display:none!important; }
+
+/* ── Loading & toast ── */
+.loading-overlay{ position:fixed; inset:0; background:var(--bg); display:flex; flex-direction:column; align-items:center; justify-content:center; z-index:9999; }
+.bar-loading{ position:fixed; top:0; left:0; height:3px; background:var(--primary); width:0; z-index:9998; transition:width .4s ease; }
+.toast{ background:var(--card); color:var(--text); border-radius:var(--r-ctl); box-shadow:var(--sh2); }
+.spinner-inline{ display:inline-block; width:1rem; height:1rem; border:2px solid var(--primary-50); border-top-color:var(--primary); border-radius:50%; animation:spin .6s linear infinite; vertical-align:-2px; }
+@keyframes spin{ to{ transform:rotate(360deg); } }
+
+/* ── Kartu & tombol ── */
+.card-x{ background:var(--card); border:1px solid var(--border); border-radius:var(--r-card); box-shadow:var(--sh1); padding:1.25rem; }
+.btn{ min-height:44px; border-radius:var(--r-ctl); font-weight:600; font-family:'Nunito Sans',sans-serif; }
+.btn-primary{ background:var(--primary); border-color:var(--primary); }
+.btn-primary:hover,.btn-primary:focus{ background:#1f5bd6; border-color:#1f5bd6; }
+.btn-soft{ background:var(--card); color:var(--navy); border:1.5px solid var(--border); }
+.btn-soft:hover{ box-shadow:var(--sh2); color:var(--navy); }
+.btn-sm{ min-height:34px; }
+.btn-ragu{ background:var(--yellow-50); border:1.5px solid var(--yellow); color:#1E2A4A; }
+.btn-ragu.on{ background:var(--yellow); }
+.form-control,.form-select{ min-height:48px; border-radius:var(--r-ctl); border:1.5px solid var(--border); background:var(--card); color:var(--text); }
+.form-control:focus,.form-select:focus{ border-color:var(--primary); box-shadow:0 0 0 4px var(--primary-50); background:var(--card); color:var(--text); }
+textarea.form-control{ min-height:90px; }
+.form-label{ font-weight:600; font-size:.85rem; color:var(--navy); margin-bottom:.25rem; }
+.modal-content{ background:var(--card); color:var(--text); border-radius:var(--r-card); box-shadow:var(--sh3); border:none; }
+.modal-header,.modal-footer{ border-color:var(--border); }
+.modal-backdrop.show{ background:#16275C; opacity:.45; }
+.badge-x{ display:inline-block; padding:.2rem .6rem; border-radius:9999px; font-size:.75rem; font-weight:700; background:var(--primary-50); color:var(--primary); }
+.badge-x.ok{ background:var(--success-50); color:var(--success); } .badge-x.warn{ background:var(--yellow-50); color:#92610A; } .badge-x.bad{ background:var(--danger-50); color:var(--danger); }
+
+/* ── Login ── */
+.login-wrap{ min-height:100vh; display:flex; align-items:center; justify-content:center; padding:1rem; background:radial-gradient(circle at 0% 10%, var(--yellow-50), transparent 40%), radial-gradient(circle at 100% 80%, var(--primary-50), transparent 45%), var(--bg); }
+.login-card{ width:100%; max-width:480px; background:var(--card); border-radius:var(--r-card); box-shadow:var(--sh2); padding:2rem; }
+.logo-box{ width:72px; height:72px; margin:0 auto .5rem; border-radius:20px; background:var(--primary-50); display:flex; align-items:center; justify-content:center; font-size:2rem; color:var(--primary); overflow:hidden; }
+.logo-box img{ width:100%; height:100%; object-fit:cover; }
+.alert-x{ background:var(--danger-50); color:var(--danger); border-radius:var(--r-ctl); padding:.75rem 1rem; font-size:.9rem; }
+
+/* ── Shell staf (admin/guru) ── */
+.sidebar{ position:fixed; top:0; left:0; width:250px; height:100vh; background:var(--sidebar); color:var(--sidebar-text); display:flex; flex-direction:column; z-index:1000; overflow-y:auto; }
+.sidebar-head{ padding:1.25rem; display:flex; gap:.75rem; align-items:center; border-bottom:1px solid rgba(255,255,255,.1); }
+.sidebar-head .logo-box{ width:42px; height:42px; margin:0; border-radius:12px; font-size:1.2rem; }
+.sidebar-head b{ color:#fff; font-family:'Nunito Sans'; font-size:.95rem; line-height:1.1; display:block; }
+.sidebar-head small{ color:var(--yellow); }
+.sidebar-nav{ list-style:none; padding:.75rem; margin:0; flex:1; }
+.sidebar-nav a{ display:flex; align-items:center; gap:.75rem; padding:.7rem 1rem; color:var(--sidebar-text); text-decoration:none; border-radius:12px; font-weight:600; font-size:.92rem; margin-bottom:2px; cursor:pointer; }
+.sidebar-nav a:hover{ background:rgba(255,255,255,.08); color:#fff; }
+.sidebar-nav a.active{ background:var(--yellow); color:#16275C; }
+.sidebar-foot{ padding:1rem; border-top:1px solid rgba(255,255,255,.1); }
+.sidebar-foot .form-check-label{ color:var(--sidebar-text); font-size:.85rem; }
+.main{ margin-left:250px; min-height:100vh; }
+.topbar{ position:sticky; top:0; z-index:900; background:var(--card); border-bottom:1px solid var(--border); padding:.7rem 1.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+.page{ padding:1.5rem; }
+.page-title{ font-size:1.6rem; margin:0 0 .25rem; }
+.stat{ display:flex; flex-direction:column; gap:.2rem; }
+.stat .lbl{ font-size:.72rem; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); font-weight:700; }
+.stat .val{ font-family:'Nunito Sans'; font-weight:800; font-size:1.9rem; color:var(--navy); line-height:1.1; }
+.stat .sub{ font-size:.8rem; color:var(--muted); }
+.stat-ic{ width:44px; height:44px; border-radius:12px; background:var(--primary-50); color:var(--primary); display:flex; align-items:center; justify-content:center; font-size:1.3rem; margin-bottom:.5rem; }
+.insight{ background:linear-gradient(135deg,#16275C,#2F6FED); color:#fff; border-radius:var(--r-card); padding:1.25rem; }
+.insight h6{ color:#fff; } .insight li{ margin-bottom:.5rem; font-size:.9rem; }
+.table-x{ width:100%; border-collapse:separate; border-spacing:0; font-size:.88rem; }
+.table-x th{ background:var(--primary-50); color:var(--navy); font-size:.72rem; text-transform:uppercase; letter-spacing:.04em; padding:.75rem; white-space:nowrap; text-align:left; }
+.table-x th:first-child{ border-radius:12px 0 0 12px; } .table-x th:last-child{ border-radius:0 12px 12px 0; }
+.table-x td{ padding:.7rem .75rem; border-bottom:1px solid var(--border); vertical-align:middle; }
+.table-x tbody tr:hover{ background:var(--primary-50); }
+.tscroll{ overflow-x:auto; }
+.avatar{ width:34px; height:34px; border-radius:50%; background:var(--primary-50); color:var(--primary); display:inline-flex; align-items:center; justify-content:center; font-weight:800; font-size:.75rem; margin-right:.5rem; font-family:'Nunito Sans'; }
+.nilai-pill{ display:inline-block; padding:.15rem .7rem; border-radius:9999px; font-weight:800; font-family:'Nunito Sans'; background:var(--primary-50); color:var(--primary); }
+.nilai-pill.warn{ background:var(--yellow-50); color:#92610A; } .nilai-pill.bad{ background:var(--danger-50); color:var(--danger); }
+.thumb{ width:44px; height:44px; border-radius:8px; object-fit:cover; border:1px solid var(--border); cursor:pointer; }
+.step{ display:flex; gap:.6rem; align-items:center; background:var(--primary-50); border-radius:var(--r-ctl); padding:.7rem 1rem; }
+.step .n{ width:30px; height:30px; border-radius:50%; background:var(--primary); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; flex:none; }
+.dropzone{ border:2px dashed var(--border); border-radius:var(--r-card); padding:2rem; text-align:center; cursor:pointer; background:var(--bg); }
+.dropzone.drag,.dropzone:hover{ border-color:var(--primary); background:var(--primary-50); }
+.row-bad{ background:var(--danger-50); }
+
+/* ── Siswa ── */
+.s-head{ background:var(--card); border-bottom:1px solid var(--border); padding:.75rem 1.5rem; display:flex; justify-content:space-between; align-items:center; gap:1rem; }
+.s-wrap{ max-width:1180px; margin:0 auto; padding:1.25rem; }
+.ujian-card{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; align-items:center; }
+.exam-bar{ position:sticky; top:0; z-index:800; background:var(--card); border-bottom:1px solid var(--border); padding:.6rem 1.25rem; display:flex; align-items:center; justify-content:space-between; gap:.75rem; flex-wrap:wrap; }
+.timer{ display:inline-flex; align-items:center; gap:.4rem; padding:.45rem 1rem; border-radius:9999px; background:var(--card); box-shadow:var(--sh2); font-family:'Nunito Sans'; font-weight:800; font-size:1.15rem; color:var(--navy); }
+.timer.low{ background:var(--yellow-50); color:var(--danger); animation:pulse 1s infinite; }
+@keyframes pulse{ 50%{ box-shadow:0 0 0 6px rgba(220,38,38,.15); } }
+.save-ind{ font-size:.78rem; color:var(--muted); display:inline-flex; gap:.3rem; align-items:center; }
+.save-ind.err{ color:var(--warning); font-weight:700; }
+.exam-grid{ display:grid; grid-template-columns:minmax(0,8fr) minmax(0,4fr); gap:1.5rem; align-items:start; }
+.q-chip{ display:inline-block; padding:.2rem .7rem; border-radius:9999px; background:var(--primary-50); color:var(--primary); font-size:.75rem; font-weight:700; margin-right:.4rem; }
+.q-num{ display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:12px; background:var(--primary); color:#fff; font-family:'Nunito Sans'; font-weight:800; font-size:1.3rem; flex:none; }
+.q-text{ font-size:1.12rem; line-height:1.75; font-weight:500; }
+.q-img{ max-width:100%; max-height:340px; border-radius:var(--r-ctl); border:1px solid var(--border); background:var(--bg); display:block; margin:1rem auto; cursor:zoom-in; }
+.opt{ display:flex; align-items:center; gap:.9rem; width:100%; text-align:left; background:var(--card); border:1.5px solid var(--border); border-radius:var(--r-ctl); padding:1rem; min-height:56px; margin-bottom:1rem; cursor:pointer; font-size:1.05rem; color:var(--text); }
+.opt:hover{ border-color:var(--primary); box-shadow:var(--sh1); }
+.opt .ltr{ width:36px; height:36px; border-radius:50%; background:var(--bg); color:var(--navy); display:flex; align-items:center; justify-content:center; font-weight:800; font-family:'Nunito Sans'; flex:none; }
+.opt .chk{ margin-left:auto; width:26px; height:26px; border-radius:50%; border:2px solid var(--border); flex:none; display:flex; align-items:center; justify-content:center; color:#fff; font-size:.8rem; }
+.opt.sel{ background:var(--primary-50); border:2px solid var(--primary); color:var(--primary); font-weight:600; }
+.opt.sel .ltr{ background:var(--primary); color:#fff; } .opt.sel .chk{ background:var(--primary); border-color:var(--primary); }
+.opt.kotak .chk{ border-radius:8px; margin:0; order:-1; }
+.bs-row{ background:var(--bg); border-radius:var(--r-ctl); padding:1rem; margin-bottom:1rem; }
+.bs-btns{ display:grid; grid-template-columns:1fr 1fr; gap:.75rem; margin-top:.75rem; }
+.bs-btns .opt{ margin:0; justify-content:center; font-weight:800; font-family:'Nunito Sans'; }
+.bs-btns .opt.sel{ background:var(--primary); color:#fff; }
+.nav-card{ position:sticky; top:84px; }
+.qgrid{ display:grid; grid-template-columns:repeat(5,1fr); gap:.5rem; max-height:300px; overflow-y:auto; padding:.2rem; }
+.qb{ height:44px; border-radius:12px; border:1px solid var(--border); background:var(--card); color:var(--muted); font-weight:800; font-family:'Nunito Sans'; cursor:pointer; }
+.qb.done{ background:var(--primary); border-color:var(--primary); color:#fff; } .qb.ragu{ background:var(--yellow); border-color:var(--yellow); color:#1E2A4A; }
+.qb.cur{ outline:2px solid var(--navy); outline-offset:2px; }
+.legend{ display:flex; gap:.9rem; flex-wrap:wrap; font-size:.75rem; color:var(--muted); margin-bottom:.75rem; }
+.legend i{ display:inline-block; width:12px; height:12px; border-radius:4px; margin-right:.3rem; vertical-align:-1px; border:1px solid var(--border); }
+.act-bar{ display:flex; gap:.75rem; justify-content:space-between; flex-wrap:wrap; margin-top:1.25rem; }
+.progress{ height:8px; border-radius:9999px; background:var(--primary-50); } .progress-bar{ background:var(--primary); }
+
+/* ── Responsif ── */
+@media (max-width:991.98px){
+  .exam-grid{ grid-template-columns:1fr; }
+  .nav-card{ position:static; order:2; }
+  .act-bar{ position:sticky; bottom:0; background:var(--card); padding:.75rem; margin:1rem -1rem -1rem; border-top:1px solid var(--border); border-radius:0 0 var(--r-card) var(--r-card); }
+}
+@media (max-width:767.98px){
+  .sidebar{ transform:translateX(-100%); transition:transform .3s ease; } .sidebar.show{ transform:none; }
+  .main{ margin-left:0; } .page{ padding:1rem; } .topbar{ padding:.6rem 1rem; }
+  .sb-overlay{ position:fixed; inset:0; background:rgba(22,39,92,.45); z-index:999; display:none; } .sb-overlay.show{ display:block; }
+  .s-head{ padding:.6rem 1rem; } .q-text{ font-size:1.05rem; }
+}
+@media print{ .sidebar,.topbar,.no-print{ display:none!important; } .main{ margin:0; } }
+
+/* ── Logo sekolah (tanpa ikon toga; bila belum ada logo → inisial) ── */
+.logo-box{ font-family:'Nunito Sans',sans-serif; font-weight:800; font-size:1.6rem; letter-spacing:.02em; }
+.logo-box.big{ width:120px; height:120px; border-radius:32px; font-size:2.8rem; margin:0; box-shadow:var(--sh3); background:#fff; color:var(--primary); }
+
+/* ── Animasi masuk login ── */
+.login-card.enter{ animation:cardIn .7s cubic-bezier(.2,.9,.3,1) both; }
+.login-card.enter .logo-box{ animation:logoBounce .9s .15s cubic-bezier(.3,1.4,.4,1) both; }
+@keyframes cardIn{ from{ opacity:0; transform:translateY(28px) scale(.96); } to{ opacity:1; transform:none; } }
+@keyframes logoBounce{ 0%{ transform:scale(.3) rotate(-12deg); opacity:0; } 100%{ transform:none; opacity:1; } }
+
+/* ── Transisi logo saat keluar ── */
+.transisi{ position:fixed; inset:0; z-index:9500; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1.5rem; background:linear-gradient(135deg,#16275C,#2F6FED); color:#fff; opacity:0; pointer-events:none; }
+.transisi.in{ opacity:1; pointer-events:all; animation:tIn .45s ease both; }
+.transisi.out{ animation:tOut .7s ease both; pointer-events:none; }
+.transisi .tr-logo{ position:relative; display:flex; align-items:center; justify-content:center; width:200px; height:200px; }
+.transisi.in .logo-box{ animation:trPop 1.3s cubic-bezier(.2,1.3,.3,1) both; }
+.tr-teks{ font-family:'Nunito Sans'; font-weight:800; font-size:1.6rem; }
+.transisi.in .tr-teks{ animation:fadeUp .8s .5s both; }
+@keyframes tIn{ from{ opacity:0; } to{ opacity:1; } }
+@keyframes tOut{ from{ opacity:1; } to{ opacity:0; visibility:hidden; } }
+@keyframes trPop{ 0%{ transform:scale(.4) rotate(-180deg); opacity:0; } 60%{ transform:scale(1.1) rotate(8deg); opacity:1; } 100%{ transform:none; } }
+@keyframes fadeUp{ from{ opacity:0; transform:translateY(16px); } to{ opacity:1; transform:none; } }
+.ring{ position:absolute; inset:0; border-radius:50%; border:3px solid rgba(255,255,255,.55); opacity:0; }
+.transisi.in .ring.r1,.intro .ring.r1{ animation:ringOut 1.8s ease-out infinite; }
+.transisi.in .ring.r2,.intro .ring.r2{ animation:ringOut 1.8s .6s ease-out infinite; }
+@keyframes ringOut{ 0%{ transform:scale(.6); opacity:.8; } 100%{ transform:scale(1.5); opacity:0; } }
+
+/* ── MOTION GRAFIS PENGANTAR 15 DETIK ── */
+.intro{ position:fixed; inset:0; z-index:9400; overflow:hidden; display:flex; align-items:center; justify-content:center; text-align:center; color:#fff; background:linear-gradient(160deg,#16275C 0%,#1d3a8a 55%,#2F6FED 100%); animation:introOut .6s 14.5s ease both; }
+.intro.skip-now{ animation:introOut .4s ease both; }
+@keyframes introOut{ to{ opacity:0; visibility:hidden; } }
+.intro h1,.intro h2{ color:#fff; }
+.intro h2{ font-size:clamp(1.6rem,5vw,2.6rem); line-height:1.2; margin:1.2rem 0 .6rem; }
+.intro p{ font-size:clamp(1rem,2.6vw,1.25rem); color:#DCE6FF; margin:0; }
+.blob{ position:absolute; border-radius:50%; filter:blur(50px); opacity:.55; animation:blobMove 9s ease-in-out infinite alternate; }
+.blob.b1{ width:360px; height:360px; background:#FFC93C; top:-90px; left:-90px; opacity:.4; }
+.blob.b2{ width:420px; height:420px; background:#5B8DF5; bottom:-140px; right:-100px; animation-delay:-3s; }
+.blob.b3{ width:240px; height:240px; background:#ff8fab; top:55%; left:55%; opacity:.25; animation-delay:-6s; }
+@keyframes blobMove{ to{ transform:translate(50px,-40px) scale(1.15); } }
+.confetti{ position:absolute; inset:0; pointer-events:none; }
+.confetti i{ position:absolute; top:-20px; width:10px; height:14px; border-radius:3px; opacity:.85; animation:fall linear infinite; }
+@keyframes fall{ to{ transform:translateY(110vh) rotate(540deg); } }
+.sc{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:1.5rem; opacity:0; animation:sc var(--dur) var(--d) ease both; }
+.sc.s5{ animation-name:sc5; }
+@keyframes sc{ 0%{ opacity:0; transform:translateY(30px) scale(.96); } 10%{ opacity:1; transform:none; } 88%{ opacity:1; transform:none; } 100%{ opacity:0; transform:translateY(-24px) scale(1.02); } }
+@keyframes sc5{ 0%{ opacity:0; transform:translateY(30px) scale(.96); } 14%{ opacity:1; transform:none; } 100%{ opacity:1; } }
+/* adegan 1 */
+.intro-logo{ position:relative; width:150px; height:150px; display:flex; align-items:center; justify-content:center; }
+.intro-logo.sm{ width:110px; height:110px; } .intro-logo.sm .logo-box.big{ width:90px; height:90px; font-size:2rem; border-radius:26px; }
+.s1 .logo-box{ animation:trPop 1.3s .2s cubic-bezier(.2,1.3,.3,1) both; }
+.intro-sch{ margin-top:1rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; font-size:.9rem; color:var(--yellow); animation:fadeUp .7s .9s both; }
+.intro-title{ font-size:clamp(2.4rem,9vw,4.6rem); margin:.4rem 0 0; display:flex; gap:.35em; flex-wrap:wrap; justify-content:center; }
+.intro-title span{ display:inline-block; animation:wordUp .7s calc(1.1s + var(--i) * .18s) cubic-bezier(.2,1.3,.3,1) both; }
+.intro-title span:last-child{ color:var(--yellow); }
+@keyframes wordUp{ from{ opacity:0; transform:translateY(40px) rotate(4deg); } to{ opacity:1; transform:none; } }
+/* adegan 2 */
+.cards3{ display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin:1.4rem 0 1rem; }
+.mini{ background:#fff; color:var(--navy); border-radius:18px; padding:.9rem 1.2rem; font-family:'Nunito Sans'; font-weight:800; display:flex; align-items:center; gap:.6rem; box-shadow:var(--sh3); opacity:0; animation:cardFly .8s cubic-bezier(.2,1.2,.3,1) both, bob 2.4s 1.2s ease-in-out infinite alternate; }
+.mini .mi{ width:34px; height:34px; border-radius:50%; background:var(--primary); color:#fff; display:flex; align-items:center; justify-content:center; font-size:1rem; }
+.mini.c2 .mi{ background:var(--yellow); color:#16275C; } .mini.c3 .mi{ background:var(--success); }
+.mini.c1{ animation-delay:calc(var(--d) + .5s), calc(var(--d) + 1.3s); } .mini.c2{ animation-delay:calc(var(--d) + .75s), calc(var(--d) + 1.6s); } .mini.c3{ animation-delay:calc(var(--d) + 1s), calc(var(--d) + 1.9s); }
+@keyframes cardFly{ from{ opacity:0; transform:translateY(60px) rotate(-8deg) scale(.8); } to{ opacity:1; transform:none; } }
+@keyframes bob{ to{ transform:translateY(-8px); } }
+.s2 p{ animation:fadeUp .6s calc(var(--d) + 1.5s) both; }
+/* adegan 3 */
+.ringwrap{ position:relative; width:150px; height:150px; }
+.rg-bg{ fill:none; stroke:rgba(255,255,255,.2); stroke-width:9; }
+.rg-fg{ fill:none; stroke:var(--yellow); stroke-width:9; stroke-linecap:round; stroke-dasharray:339.3; stroke-dashoffset:339.3; transform:rotate(-90deg); transform-origin:60px 60px; animation:ringDraw 2.4s calc(var(--d) + .3s) ease-out both; }
+@keyframes ringDraw{ to{ stroke-dashoffset:60; } }
+.rg-txt{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; font-family:'Nunito Sans'; font-weight:800; font-size:1.25rem; }
+.rg-txt i{ font-size:1.5rem; color:var(--yellow); }
+.saved{ position:absolute; right:-70px; bottom:-6px; background:#fff; color:var(--success); border-radius:9999px; padding:.3rem .8rem; font-weight:700; font-size:.8rem; box-shadow:var(--sh2); opacity:0; animation:popIn .5s calc(var(--d) + 1.4s) cubic-bezier(.3,1.5,.4,1) both; }
+@keyframes popIn{ from{ opacity:0; transform:scale(.4); } to{ opacity:1; transform:none; } }
+.s3 h2,.s3 p,.s4 h2,.s4 p{ animation:fadeUp .6s calc(var(--d) + .6s) both; } .s3 p,.s4 p{ animation-delay:calc(var(--d) + .9s); }
+/* adegan 4 */
+.bars{ position:relative; display:flex; align-items:flex-end; gap:14px; height:150px; padding:0 1rem; }
+.bars>i{ display:block; width:34px; height:var(--h); border-radius:10px 10px 4px 4px; background:linear-gradient(#FFC93C,#f59e0b); transform:scaleY(0); transform-origin:bottom; animation:grow .8s calc(var(--d) + .3s + var(--k) * .15s) cubic-bezier(.2,1.2,.3,1) both; }
+.bars>i:nth-child(odd){ background:linear-gradient(#fff,#B2C1FF); }
+@keyframes grow{ to{ transform:scaleY(1); } }
+.mail{ position:absolute; top:-30px; left:-60px; font-size:2.2rem; color:#fff; opacity:0; animation:mailFly 1.6s calc(var(--d) + 1.3s) ease-in-out both; }
+@keyframes mailFly{ 0%{ opacity:0; transform:translate(0,30px) scale(.6); } 25%{ opacity:1; } 100%{ opacity:0; transform:translate(360px,-40px) rotate(12deg) scale(1.1); } }
+/* adegan 5 */
+.go{ margin-top:1rem; background:var(--yellow); color:#16275C; font-family:'Nunito Sans'; font-weight:800; padding:.8rem 1.6rem; border-radius:9999px; font-size:1.15rem; animation:goPulse 1.2s ease-in-out infinite; }
+@keyframes goPulse{ 50%{ transform:scale(1.07); box-shadow:0 0 0 12px rgba(255,201,60,.2); } }
+.s5 h2{ animation:fadeUp .6s calc(var(--d) + .4s) both; }
+.skip{ position:absolute; top:max(16px,env(safe-area-inset-top)); right:16px; z-index:5; background:rgba(255,255,255,.16); color:#fff; border:1px solid rgba(255,255,255,.4); border-radius:9999px; padding:.5rem 1.1rem; font-weight:600; min-height:44px; cursor:pointer; }
+.skip:hover{ background:rgba(255,255,255,.3); }
+.intro-prog{ position:absolute; left:0; right:0; bottom:0; height:5px; background:rgba(255,255,255,.15); }
+.intro-prog i{ display:block; height:100%; width:0; background:var(--yellow); animation:prog 15s linear both; }
+@keyframes prog{ to{ width:100%; } }
+@media (max-width:575.98px){ .saved{ right:-40px; } .mail{ display:none; } }
+@media (prefers-reduced-motion:reduce){ .intro{ display:none!important; } }
+
+/* ── Asisten AI ── */
+.ai-grid{ display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:1.25rem; align-items:start; }
+.chat{ height:52vh; min-height:300px; overflow-y:auto; display:flex; flex-direction:column; gap:.7rem; padding:.5rem; background:var(--bg); border-radius:var(--r-ctl); margin:.75rem 0; }
+.msg{ max-width:88%; overflow-wrap:anywhere; word-break:break-word; padding:.65rem .9rem; border-radius:16px; font-size:.92rem; line-height:1.5; white-space:pre-wrap; }
+.msg.u{ align-self:flex-end; background:var(--primary); color:#fff; border-bottom-right-radius:4px; }
+.msg.a{ align-self:flex-start; background:var(--card); border:1px solid var(--border); border-bottom-left-radius:4px; }
+.typing span{ display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--muted); margin:0 2px; animation:dot 1s infinite; } .typing span:nth-child(2){ animation-delay:.15s; } .typing span:nth-child(3){ animation-delay:.3s; }
+@keyframes dot{ 50%{ transform:translateY(-5px); opacity:.5; } }
+.draft{ border:1.5px solid var(--border); border-radius:var(--r-ctl); padding:.9rem; margin-bottom:.75rem; background:var(--card); }
+.draft.sel{ border-color:var(--primary); background:var(--primary-50); } .draft.bad{ border-color:var(--danger); }
+.draft .pl{ font-size:.85rem; padding:.15rem .5rem; border-radius:8px; margin-top:.25rem; }
+.draft .pl.k{ background:var(--success-50); color:var(--success); font-weight:600; }
+@media (max-width:991.98px){ .ai-grid{ grid-template-columns:1fr; } }
